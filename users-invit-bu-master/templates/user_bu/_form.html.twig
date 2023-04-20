@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <button class="btn  {{ type is defined and type == 'edit' ? 'btn-primary' : 'btn-success' }} ">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_end(form) }}

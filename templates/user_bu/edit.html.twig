@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit UserBu{% endblock %}
+
+{% block body %}
+    <h1>Edit UserBu</h1>
+
+
+    {{ include('user_bu/_form.html.twig', {'button_label': 'Mettre à jour', 'type' : 'edit'})  }} 
+
+     <button data-url ="{{ path('app_user_bu_send_mail', { 'emailAdress' : user_bu.email}) }}" id="envoyerMail">envoyer email</button>
+    
+    <a href="{{ path('app_user_bu_index') }}">Retour à la liste</a>
+
+    {{ include('user_bu/_delete_form.html.twig') }}
+
+<div id='tutu'>qsdfsdqfsdq</div>
+
+
+
+<script>
+
+
+$( document ).ready(function() {
+$( "#envoyerMail" ).click(function() {
+     var email = $('emailAdress'); 
+     $.ajax({
+          method: "POST",
+          url: $('#envoyerMail').data("url"),
+          success: function(){
+               
+          }
+     })
+});
+
+});     
+     
+
+$('qsdf').val('');
+</script>
+
+{% endblock %}

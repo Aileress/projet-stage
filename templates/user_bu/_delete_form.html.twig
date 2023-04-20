@@ -1,0 +1,10 @@
+{% if not is_granted('ROLE_ADMIN') %}
+    
+    {%else%}
+    <form method="post" action="{{ path('app_user_bu_delete', {'id': user_bu.id}) }}" onsubmit="return confirm('Êtes vous sûr de vouloir supprimer cet utilisateur ?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user_bu.id) }}">
+            <button class="btn btn-danger">Supprimer</button>
+    </form>
+        
+{% endif %}
+

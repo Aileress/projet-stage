@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserBu{% endblock %}
+
+{% block body %}
+    <h1>UserBu</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_bu.id }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ user_bu.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user_bu.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{{ user_bu.birthday|date("d/m/Y") }}</td>
+            </tr>
+            <tr>
+                <th>Lieu de naissance</th>
+                <td>{{ user_bu.birthPlace }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user_bu.email }}</td>
+            </tr>
+            <tr>
+                <th>Date de création du compte</th>
+                <td>{{ user_bu.creationDate|date("d/m/Y") }}</td>
+            </tr>
+            <tr>
+                <th>ListeService</th>
+                <td>{{ user_bu.listeService ? user_bu.listeService|join(', ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_bu_index') }}">Retour à la liste</a>
+    <br>
+    <a href="{{ path('app_user_bu_edit', {'id': user_bu.id}) }}">éditer</a>
+
+    {{ include('user_bu/_delete_form.html.twig') }}
+{% endblock %}

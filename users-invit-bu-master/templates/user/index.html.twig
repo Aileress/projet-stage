@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+
+
+<div class="container">
+
+    <h2 class="text-center">Invité BU</h2>
+
+    {{ form_start(form) }}
+
+        <div class="form-group">
+            <div class="form-error">
+                {{ form_errors(form.firstName) }}
+            </div>
+
+            {{ form_label(form.firstName, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.firstName, { 'attr': {'class': 'form-control'} } ) }}
+        </div>
+
+        <div class="form-group">
+            <div class="form-error">
+                {{ form_errors(form.lastName) }}
+            </div>
+            {{ form_label(form.lastName, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.lastName, { 'attr': {'class': 'form-control'} } ) }}
+        </div>
+        
+        <div class="form-group">
+            <div class="form-error">
+                {{ form_errors(form.birthday) }}
+            </div>
+
+            {{ form_label(form.birthday, 'Date de naissance', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.birthday, { 'attr': {'class': 'form-control'} } ) }}
+        </div>
+
+        <div class="form-group">
+            <div class="form-error">
+                {{ form_errors(form.birthPlace) }}
+            </div>
+            {{ form_label(form.birthPlace, 'Lieu de naissance', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.birthPlace, { 'attr': {'class': 'form-control'} } ) }}
+        </div>
+    
+        
+        <div class="form-group">
+            <div class="form-error">
+                {{ form_errors(form.email) }}
+            </div>
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email,  { 'attr': {'class': 'form-control'} } ) }}
+        </div>
+
+        <div class="form-group">
+            <div class="form-error">
+                {{ form_errors(form.creationDate) }}
+            </div>
+
+            {{ form_label(form.creationDate, 'Date de créarion du compte', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.creationDate, { 'attr': {'class': 'form-control'} } ) }}
+        </div>
+
+        <div class="form-group">
+            <label>Services </label>
+            <ul class="list-group" >
+                {% for service in form.listeServices %}
+                    <li>
+                        {{ form_widget(service) }}   
+                        {{ form_label(service) }}             
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+
+        
+    {{ form_end(form) }}
+
+    <style>
+        ul li {
+            list-style: none;
+        }
+    </style>
+</div>
+
+{% endblock %}

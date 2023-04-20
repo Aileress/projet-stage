@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserBu index{% endblock %}
+
+    
+{% block body %}
+
+    <h1>UserBu index</h1>
+
+    <table class="table table-striped" id='myTable'>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Date de naissance</th>
+                <th>lieu de naissance</th>
+                <th>Email</th>
+                <th>Date de création du compte</th>
+                <th>ListeService</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% if not is_granted('ROLE_USER') %}
+
+            my message 
+        {% endif %}
+
+        {% for user_bu in user_bus %}
+            <tr>
+                <td>{{ user_bu.id }}</td>
+                <td>{{ user_bu.firstName }}</td>
+                <td>{{ user_bu.lastName }}</td>
+                <td>{{ user_bu.birthday|date("d/m/Y") }}</td>
+                <td>{{ user_bu.birthPlace }}</td>
+                <td>{{ user_bu.email }}</td>
+                <td>{{ user_bu.creationDate|date("d/m/Y")}}</td>
+                <td>{{ user_bu.listeService ? user_bu.listeService|join(',') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_user_bu_show', {'id': user_bu.id}) }}">Afficher</a>
+                    <a href="{{ path('app_user_bu_edit', {'id': user_bu.id}) }}">Editer</a>
+                   
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_bu_new') }}">Créer nouvel utilisateur</a>
+    <script>
+            $(document).ready( function () {
+                $('#myTable').DataTable(); 
+            } );
+        </script>
+{% endblock %}
+
